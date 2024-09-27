@@ -33,4 +33,4 @@ jobs:
           FOLLOW_CSRF_TOKEN: ${{ secrets.FOLLOW_CSRF_TOKEN }}
           FOLLOW_COOKIE: ${{ secrets.FOLLOW_COOKIE }}
         run: |
-          python follow.py
+          python scripts/follow.py
