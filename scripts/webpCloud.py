@@ -1,7 +1,7 @@
-# scripts/check_in.py
 import os
 import requests
 import json
+import re
 
 def main():
     token = os.getenv('WEBPCLOUD_TOKEN')
@@ -20,16 +20,38 @@ def main():
     try:
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
-        print(f"Check-in response: {response.json()}")
+        response_json = response.json()
+        
+        if 'success' in response_json:
+            if response_json['success']:
+                # 签到成功
+                message = response_json.get('data', '签到成功。')
+                
+                # 使用正则表达式提取永久额度的数字
+                match = re.search(r'added permanent quota:\s*(\d+)', message)
+                if match:
+                    quota = match.group(1)
+                    print(f"✅ 签到成功: 永久额度新增{quota}")
+                else:
+                    print(f"✅ 签到成功: {message}")
+            else:
+                # 已经签到过
+                message = response_json.get('messages', '今天已经签到过了。')
+                print(f"ℹ️ 已经签到过: {message}")
+        else:
+            # 未预料到的响应格式
+            print("⚠️ 未知的响应格式:")
+            print(json.dumps(response_json, indent=2, ensure_ascii=False))
+            
     except requests.exceptions.HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
+        print(f"HTTP 错误发生: {http_err}")
         try:
             error_content = response.json()
-            print(f"Error details: {json.dumps(error_content, indent=2, ensure_ascii=False)}")
+            print(f"错误详情: {json.dumps(error_content, indent=2, ensure_ascii=False)}")
         except ValueError:
-            print(f"Response content: {response.text}")
+            print(f"响应内容: {response.text}")
     except requests.exceptions.RequestException as e:
-        print(f"Error during check-in: {e}")
+        print(f"请求过程中发生错误: {e}")
 
 if __name__ == "__main__":
-        main()
+    main()
