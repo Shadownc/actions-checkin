@@ -3,7 +3,7 @@ import os
 import requests
 
 def main():
-    token = os.getenv('WEBPPT_TOKEN')
+    token = os.getenv('WEBPCLOUD_TOKEN')
     url = 'https://webppt.webp.se/v1/user/check_in'
     headers = {
         'Accept': 'application/json, text/plain, */*',
