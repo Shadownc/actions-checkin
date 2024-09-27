@@ -4,6 +4,7 @@ on:
   schedule:
     # 每天 8 点（UTC 0 点）运行（北京时间 8 点）
     - cron: '0 0 * * *'
+  workflow_dispatch: # 允许手动触发工作流程
 
 jobs:
   sign-in:
