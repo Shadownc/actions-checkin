@@ -32,7 +32,10 @@ def sign_in():
     if code == 0:
         print("签到成功")
     else:
-        print(f"签到失败: {message}")
+        if "Already claimed" in message:
+            print("今日已签到")
+        else:
+            print(f"签到失败: {message}")
 
 if __name__ == "__main__":
     sign_in()
