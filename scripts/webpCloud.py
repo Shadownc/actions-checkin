@@ -47,7 +47,14 @@ def main():
         print(f"HTTP 错误发生: {http_err}")
         try:
             error_content = response.json()
-            print(f"错误详情: {json.dumps(error_content, indent=2, ensure_ascii=False)}")
+            # 检查是否包含 "has checked in today"
+            message = error_content.get('messages', '')
+            if "has checked in today" in message:
+                # 检查到用户已签到
+                print("ℹ️ 已签到过: 今天已经签到过了。")
+            else:
+                # 打印其他错误详情
+                print(f"错误详情: {json.dumps(error_content, indent=2, ensure_ascii=False)}")
         except ValueError:
             print(f"响应内容: {response.text}")
     except requests.exceptions.RequestException as e:
