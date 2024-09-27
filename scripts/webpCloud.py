@@ -47,6 +47,7 @@ def main():
         print(f"HTTP 错误发生: {http_err}")
         try:
             error_content = response.json()
+            print(f"错误详情: {json.dumps(error_content, indent=2, ensure_ascii=False)}")
             # 检查是否包含 "has checked in today"
             message = error_content.get('messages', '')
             if "has checked in today" in message:
