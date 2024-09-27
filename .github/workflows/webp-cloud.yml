@@ -29,6 +29,6 @@ jobs:
       # 步骤 4: 运行签到脚本
       - name: 运行WebP Cloud签到脚本
         env:
-          WEBPPT_TOKEN: ${{ secrets.WEBPPT_TOKEN }}
+          WEBPCLOUD_TOKEN: ${{ secrets.WEBPCLOUD_TOKEN }}
         run: |
           python scripts/webpCloud.py
