@@ -6,7 +6,7 @@
 值从登录后的`Local storage`取 `token`
 
 ## [follow](https://app.follow.is/)
-**切换不要退出登录 不然参数值会失效**
+**切换不要退出登录 不然参数值会失效**  
 在 `GitHub` 仓库的 `Settings` > `Secrets and variables` > `Actions` 中添加两个变量：
 * `FOLLOW_CSRF_TOKEN`
 * `FOLLOW_COOKIE`
