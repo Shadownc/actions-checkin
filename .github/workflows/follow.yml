@@ -1,0 +1,35 @@
+name: follow 签到
+
+on:
+  schedule:
+    # 每天 8 点（UTC 0 点）运行（北京时间 8 点）
+    - cron: '0 0 * * *'
+
+jobs:
+  sign-in:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 检出仓库中的代码
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # 设置 Python 环境
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      # 安装依赖
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      # 传递 GitHub Secrets 并运行follow签到脚本
+      - name: 运行follow签到脚本
+        env:
+          FOLLOW_CSRF_TOKEN: ${{ secrets.FOLLOW_CSRF_TOKEN }}
+          FOLLOW_COOKIE: ${{ secrets.FOLLOW_COOKIE }}
+        run: |
+          python follow.py
