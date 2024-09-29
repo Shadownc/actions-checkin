@@ -30,5 +30,6 @@ jobs:
       - name: 运行WebP Cloud签到脚本
         env:
           WEBPCLOUD_TOKEN: ${{ secrets.WEBPCLOUD_TOKEN }}
+          WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
         run: |
           python scripts/webpCloud.py

@@ -32,5 +32,6 @@ jobs:
         env:
           FOLLOW_CSRF_TOKEN: ${{ secrets.FOLLOW_CSRF_TOKEN }}
           FOLLOW_COOKIE: ${{ secrets.FOLLOW_COOKIE }}
+          WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
         run: |
           python scripts/follow.py

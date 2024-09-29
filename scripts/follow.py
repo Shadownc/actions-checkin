@@ -9,7 +9,6 @@ from utils.qywechat_notify import send_wechat_notification
 
 def load_env_variables():
     """加载并返回环境变量。"""
-    print(os.getenv("GITHUB_ACTIONS"))
     if os.getenv("GITHUB_ACTIONS") is None:  # 如果不在 GitHub Actions 环境中，加载 .env 文件
         load_dotenv()
 
