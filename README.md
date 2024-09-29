@@ -12,9 +12,6 @@
 2. 添加名称为 `WEBHOOK_KEY` 的新 secret，并将企业微信 `webhook key` 作为值输入。
 
 完成后，`Actions` 工作流可以使用该 `key` 发送通知。  
-
-同时新增一个变量`GITHUB_ACTIONS` 值为 `true`  
-
 ---
 
 ## [WebP Cloud](https://dashboard.webp.se/proxy)
