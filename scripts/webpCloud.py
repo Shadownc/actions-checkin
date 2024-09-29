@@ -4,7 +4,7 @@ import requests
 import json
 import re
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from dotenv import load_dotenv
 from utils.qywechat_notify import send_wechat_notification
 

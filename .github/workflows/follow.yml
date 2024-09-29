@@ -21,9 +21,6 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: List files
-        run: ls -R  # 列出所有目录和文件
-
       # 安装依赖
       - name: Install dependencies
         run: |
