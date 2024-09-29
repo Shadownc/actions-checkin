@@ -9,7 +9,7 @@ on:
 jobs:
   sign-in:
     runs-on: ubuntu-latest
-    
+
     steps:
       # 检出仓库中的代码
       - name: Checkout code
@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install -r requirements.txt
 
       # 传递 GitHub Secrets 并运行follow签到脚本
       - name: 运行follow签到脚本
