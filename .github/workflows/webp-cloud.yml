@@ -31,5 +31,7 @@ jobs:
         env:
           WEBPCLOUD_TOKEN: ${{ secrets.WEBPCLOUD_TOKEN }}
           WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
+          SERVER_CHAN_KEY: ${{ secrets.SERVER_CHAN_KEY }}
+          QMSG_KEY: ${{ secrets.QMSG_KEY }}
         run: |
           python scripts/webpCloud.py
