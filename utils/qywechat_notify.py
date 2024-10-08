@@ -7,6 +7,12 @@ if os.getenv("GITHUB_ACTIONS") is None:
 
 def send_wechat_notification(content):
     webhook_key = os.getenv('WEBHOOK_KEY')
+
+    # 检查 webhook_key 是否为 None 或空字符串
+    if not webhook_key:
+        print("⚠️ webhook_key 未设置 请设置后重试！")
+        return
+
     wechat_webhook_url = f'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={webhook_key}'
     headers = {
         'Content-Type': 'application/json'

@@ -5,20 +5,31 @@ from dotenv import load_dotenv
 if os.getenv("GITHUB_ACTIONS") is None:
     load_dotenv()
 
-def send_server_chan_notification(title, desp, channel=9):
+def send_server_chan_notification(title, desp):
     server_chan_key = os.getenv('SERVER_CHAN_KEY')
-    server_chan_url = f'https://sctapi.ftqq.com/{server_chan_key}.send'
+
+    # 检查 server_chan_key 是否为 None 或空字符串
+    if not server_chan_key:
+        print("⚠️ SERVER_CHAN_KEY 未设置 请设置后重试！")
+        return
+
+    # 根据 server_chan_key 的前缀决定使用不同的推送URL
+    if server_chan_key.startswith('sctp'):
+        server_chan_url = f'https://{server_chan_key}.push.ft07.com/send'
+    else:
+        server_chan_url = f'https://sctapi.ftqq.com/{server_chan_key}.send'
+    
     headers = {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+        'Content-Type': 'application/json;charset=utf-8'
     }
+
     data = {
         'title': title,
-        'desp': desp,
-        'channel': channel
+        'desp': desp
     }
 
     try:
-        response = requests.post(server_chan_url, headers=headers, data=data)
+        response = requests.post(server_chan_url, json=data, headers=headers)
         response.raise_for_status()
         print("✅ Server酱通知发送成功。")
     except requests.exceptions.HTTPError as http_err:
