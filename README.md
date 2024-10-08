@@ -2,16 +2,29 @@
 
 本仓库用于存放 `GitHub Actions` 执行的各种签到脚本。
 
-## 新增功能：企业微信消息推送
+## 新增功能：
+### **企业微信消息推送**
 
 现在可以通过**企业微信**接收 `GitHub Actions` 执行的通知。要启用该功能，请设置企业微信机器人的 `webhook` 并将 `webhook key` 添加为 `GitHub Actions` 的 `secret`。
 
-### 配置步骤：
+**配置步骤：**
 
 1. 前往 `GitHub` 仓库的 `Settings` > `Secrets and variables` > `Actions`。
 2. 添加名称为 `WEBHOOK_KEY` 的新 `secret`，并将企业微信 `webhook key` 作为值输入。
 
 完成后，`Actions` 工作流可以使用该 `key` 发送通知。
+
+### **Server酱**
+[文档地址](https://sct.ftqq.com/)  
+**配置步骤：**
+1. 前往 `GitHub` 仓库的 `Settings` > `Secrets and variables` > `Actions`。
+2. 添加名称为 `SERVER_CHAN_KEY` 的新 `secret`，并将管理后台的`key` 作为值输入。
+
+### **Qmsg酱消息推送**  
+[文档地址](https://qmsg.zendee.cn/)  
+**配置步骤：**
+1. 前往 `GitHub` 仓库的 `Settings` > `Secrets and variables` > `Actions`。
+2. 添加名称为 `QMSG_KEY` 的新 `secret`，并将`Qmsg酱`管理台的`key` 作为值输入。
 
 ---
 
