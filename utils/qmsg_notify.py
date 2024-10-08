@@ -7,6 +7,12 @@ if os.getenv("GITHUB_ACTIONS") is None:
 
 def send_qmsg_notification(content):
     qmsg_key = os.getenv('QMSG_KEY')  # 从环境变量中获取 Qmsg 酱的 key
+
+    # 检查 qmsg_key 是否为 None 或空字符串
+    if not qmsg_key:
+        print("⚠️ qmsg_key 未设置 请设置后重试！")
+        return
+
     qmsg_url = f'https://qmsg.zendee.cn/jsend/{qmsg_key}'
     headers = {
         'Content-Type': 'application/json'
