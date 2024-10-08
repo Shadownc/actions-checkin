@@ -34,6 +34,7 @@ jobs:
           FOLLOW_COOKIE: ${{ secrets.FOLLOW_COOKIE }}
           WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
           SERVER_CHAN_KEY: ${{ secrets.SERVER_CHAN_KEY }}
+          SERVER_CHAN_CHANNEL: ${{secrets.SERVER_CHAN_CHANNEL}}
           QMSG_KEY: ${{ secrets.QMSG_KEY }}
         run: |
           python scripts/follow.py

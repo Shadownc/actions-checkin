@@ -19,6 +19,7 @@
 **配置步骤：**
 1. 前往 `GitHub` 仓库的 `Settings` > `Secrets and variables` > `Actions`。
 2. 添加名称为 `SERVER_CHAN_KEY` 的新 `secret`，并将管理后台的`key` 作为值输入。
+3. 添加名称为`SERVER_CHAN_CHANNEL` 不设置则为默认推送渠道 具体值详见文档。
 
 ### **Qmsg酱消息推送**  
 [文档地址](https://qmsg.zendee.cn/)  
