@@ -1,5 +1,6 @@
 import os
 import requests
+import re
 from dotenv import load_dotenv
 
 if os.getenv("GITHUB_ACTIONS") is None:
@@ -19,13 +20,21 @@ def send_server_chan_notification(title, desp):
         'desp': desp
     }
 
-    # 根据 server_chan_key 的前缀决定使用不同的推送URL
+    # 判断 server_chan_key 是否以 'sctp' 开头，并提取数字构造 URL
     if server_chan_key.startswith('sctp'):
-        server_chan_url = f'https://{server_chan_key}.push.ft07.com/send'
+        match = re.match(r'sctp(\d+)t', server_chan_key)
+        if match:
+            num = match.group(1)
+            server_chan_url = f'https://{num}.push.ft07.com/send/{server_chan_key}.send'
+            data['tags'] = '自动签到提醒'
+        else:
+            print("⚠️ SERVER_CHAN_KEY sctp 格式无效！")
+            return
+            # raise ValueError('Invalid sendkey format for sctp')
     else:
         server_chan_url = f'https://sctapi.ftqq.com/{server_chan_key}.send'
         data['channel'] = channel  # 推送通道 默认9
-    
+
     headers = {
         'Content-Type': 'application/json;charset=utf-8'
     }
